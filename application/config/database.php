@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'cp515818_norman',
-	'password' => 'watashino123',
-	'database' => 'cp515818_loans_pro',
+	'hostname' => "localhost",
+	'username' => "root",
+	'password' => "",
+	'database' => "palma_areca",
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'c19_',
 	'pconnect' => FALSE,
