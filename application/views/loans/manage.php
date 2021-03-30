@@ -36,7 +36,7 @@
                         <a href="<?= site_url(); ?>">Home</a>
                     </li>
                     <li>
-                        <a>Loans</a>
+                        <a>Contratos</a>
                     </li>
                     <li class="active">
                         <strong>List</strong>
@@ -73,7 +73,7 @@
                                 <tr>
                                     <th style="text-align: center; width: 1%"><input type="checkbox" class="select_all_" /></th>
                                     <th style="text-align: center"><?= $this->lang->line('common_id') ?></th>
-                                    <th style="text-align: center"><?= $this->lang->line('loans_type') ?></th>
+                                    <th style="text-align: center"><?= $this->lang->line('loans_type_desa') ?></th>
                                     <th style="text-align: center"><?= $this->lang->line('loans_account') ?></th>
                                     <th style="text-align: center"><?= $this->lang->line('loans_description') ?></th>
                                     <th style="text-align: center"><?= $this->lang->line('loans_amount') ?></th>

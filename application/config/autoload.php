@@ -112,7 +112,7 @@ $autoload['language'] = array();
   |
  */
 
-$autoload['model'] = array('Appconfig', 'Person', 'Guarantee', 'Customer', 'Employee', 'Message', 'Module', 'Loan_type','My_wallet', 'Payment_schedule', 'Loan', 'Payment', 'Email');
+$autoload['model'] = array('Appconfig', 'Person', 'Guarantee', 'Customer', 'Lote', 'Employee', 'Message', 'Module', 'Loan_type','My_wallet', 'Payment_schedule', 'Loan', 'Payment', 'Email');
 
 
 /* End of file autoload.php */

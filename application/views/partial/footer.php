@@ -4,7 +4,7 @@
 <!-- BEGIN FOOTER -->
 <div class="footer">
     <div>
-        <?php echo $this->lang->line('common_powered_by') . " " . $this->config->item('application_version'); ?>
+        <?php echo $this->lang->line('common_powered_by'); ?>
     </div>
 </div>
 <!-- BEGIN FOOTER -->

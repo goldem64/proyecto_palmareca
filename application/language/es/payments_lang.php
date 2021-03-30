@@ -1,6 +1,6 @@
 <?php
 $lang['payments_new'] = 'Nueva Pago';
-$lang['payments_loan'] = 'Préstamo';
+$lang['payments_loan'] = 'Monto'; //prestamo
 $lang['payments_account'] = 'Cuenta #';
 $lang['payments_teller'] = 'Agente';
 $lang['payments_confirm_delete'] = '¿Seguro que quieres eliminar los pagos seleccionados?';

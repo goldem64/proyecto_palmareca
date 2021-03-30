@@ -39,7 +39,7 @@ class Loan extends CI_Model {
                    CONCAT(approver.first_name, ' ', approver.last_name) as approver_name,
                    IF (
                         l.loan_type_id = 0,
-                        'Flexible',
+                        'Lagunera SM 10 Lote 1',
                         lt.name
                    ) AS loan_type";
 
@@ -134,14 +134,16 @@ class Loan extends CI_Model {
 
     function get_info($loan_id)
     {
-        $select = "loans.*, CONCAT(customer.first_name, ' ', customer.last_name) as customer_name, 
-                   CONCAT(agent.first_name, ' ',agent.last_name) as agent_name, 
-                   CONCAT(approver.first_name, ' ', approver.last_name) as approver_name";
+        $select = "loans.*, CONCAT(customer.first_name, ' ', customer.last_name) as customer_name,
+                CONCAT(lote.desarrollo, ' SM ', lote.sm, ' lote ', lote.lote) as lote_name,
+                CONCAT(agent.first_name, ' ',agent.last_name) as agent_name, 
+                CONCAT(approver.first_name, ' ', approver.last_name) as approver_name";
         $this->db->select($select, FALSE);
         $this->db->from('loans');
         $this->db->join('people as customer', 'customer.person_id = loans.customer_id', 'LEFT');
         $this->db->join('people as agent', 'agent.person_id = loans.loan_agent_id', 'LEFT');
         $this->db->join('people as approver', 'approver.person_id = loans.loan_approved_by_id', 'LEFT');
+        $this->db->join('lotes as lote', 'lote.lote_id = loans.lote_id', 'LEFT');
         $this->db->where('loan_id', $loan_id);
 
         $query = $this->db->get();

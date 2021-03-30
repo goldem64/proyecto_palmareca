@@ -206,12 +206,12 @@
                                 <div class="form-group">
                                     <div class="kform theme-primary">
                                         <div>
-                                            <label class="field append-icon">
+                                            <!-- <label class="field append-icon">
                                                 <input type="text" name="search" id="search" class="gui-input" placeholder="Type your search here..." />
                                                 <label for="search" class="field-icon">
                                                     <i class="fa fa-search"></i>
                                                 </label>
-                                            </label>
+                                            </label> -->
                                         </div>
                                     </div>
                                 </div>

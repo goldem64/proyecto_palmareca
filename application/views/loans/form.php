@@ -79,7 +79,7 @@
                         <li><a data-toggle="tab" href="#sectionB"><?= $this->lang->line("loans_misc_fees"); ?></a></li>
                         <li><a data-toggle="tab" href="#sectionC"><?= $this->lang->line('loans_attachments') ?></a></li>
                         <li><a data-toggle="tab" href="#sectionE"><?= $this->lang->line('guarantee') ?></a></li>
-                        <li><a data-toggle="tab" href="#sectionF">Loan Calculator</a></li>
+                        <li><a data-toggle="tab" href="#sectionF">cronograma de pagos</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
@@ -89,15 +89,7 @@
                                 <ul id="error_message_box"></ul>
                             </div>
                             
-                            <!--
-                            <div class="form-group"><label class="col-sm-2 control-label"><?php echo form_label($this->lang->line('loans_type') . ':', 'loan_type', array('class' => 'wide')); ?></label>
-                                <div class="col-sm-10">
-                                    <?php echo form_dropdown("loan_type", $loan_types, $loan_info->loan_type_id, "id='loan_type' class='form-control'"); ?>
-                                    <input type="hidden" id="loan_type_id" name="loan_type_id" value="<?= $loan_info->loan_type_id; ?>" />
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            -->
+                           
 
                             <div class="form-group"><label class="col-sm-2 control-label"><?php echo form_label($this->lang->line('customers_customer') . ':', 'inp-customer', array('class' => 'wide required')); ?></label>
                                 <div class="col-sm-10">
@@ -278,89 +270,45 @@
                                 <div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
                                 <ul id="error_message_box"></ul>
                             </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group"><label class="col-sm-2 control-label"><?php echo form_label($this->lang->line('guarantee_desarrollo') . ':', 'inp-guarantee', array('class' => 'wide required')); ?></label>
+                                <div class="col-sm-10">
+                                    <?php
+                                    echo form_input(
+                                            array(
+                                                'name' => 'inp-guarantee',
+                                                'id' => 'inp-guarantee',
+                                                'value' => $loan_info->lote_name,
+                                                'class' => 'form-control',
+                                                'placeholder' => $this->lang->line('common_start_typing'),
+                                                'style' => 'display:' . ($loan_info->lote_id <= 0 ? "" : "none")
+                                            )
+                                    );
+                                    ?>
+
+                                    <span id="sp-guarantee" style="display: <?= ($loan_info->lote_id > 0 ? "" : "none") ?>">
+                                        <?= $loan_info->lote_name; ?>
+                                        <span><a href="javascript:void(0)" title="Remove Guarantee" class="btn-remove-row2"><i class="fa fa-times"></i></a></span>
+                                    </span>
+                                    <input type="hidden" id="guarantee" name="guarantee" value="<?= $loan_info->lote_id; ?>" />
+
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_name') . ':', 'guarantee_name', array('class' => 'wide required')); ?>
+                                    <?php echo form_label($this->lang->line('guarantee_enganche') . ':', 'enganche', array('class' => 'wide required')); ?>
                                 </label>
                                 <div class="col-sm-10">
                                     <?php
                                     echo form_input(
                                             array(
-                                                'name' => 'guarantee_name',
-                                                'id' => 'guarantee_name',
-                                                'value' => $guarantee_info->name,
-                                                'class' => 'form-control'
-                                            )
-                                    );
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_type') . ':', 'guarantee_type', array('class' => 'wide required')); ?>
-                                </label>
-                                <div class="col-sm-10">
-                                    <?php
-                                    echo form_input(
-                                            array(
-                                                'name' => 'guarantee_type',
-                                                'id' => 'guarantee_type',
-                                                'value' => $guarantee_info->type,
-                                                'class' => 'form-control'
-                                            )
-                                    );
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_brand') . ':', 'guarantee_brand', array('class' => 'wide required')); ?>
-                                </label>
-                                <div class='col-sm-10'>
-                                    <?php
-                                    echo form_input(
-                                            array(
-                                                'name' => 'guarantee_brand',
-                                                'id' => 'guarantee_brand',
-                                                'value' => $guarantee_info->brand,
-                                                'class' => 'form-control'
-                                            )
-                                    );
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_make') . ':', 'guarantee_make', array('class' => 'wide required')); ?>
-                                </label>
-                                <div class="col-sm-10">
-                                    <?php
-                                    echo form_input(
-                                            array(
-                                                'name' => 'guarantee_make',
-                                                'id' => 'guarantee_make',
-                                                'value' => $guarantee_info->make,
-                                                'class' => 'form-control'
-                                            )
-                                    );
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_serial') . ':', 'guarantee_serial', array('class' => 'wide required')); ?>
-                                </label>
-                                <div class="col-sm-10">
-                                    <?php
-                                    echo form_input(
-                                            array(
-                                                'name' => 'guarantee_serial',
-                                                'id' => 'guarantee_serial',
-                                                'value' => $guarantee_info->serial,
+                                                'name' => 'enganche',
+                                                'id' => 'enganche',
+                                                'value' => $loan_info->enganche,
                                                 'class' => 'form-control'
                                             )
                                     );
@@ -370,16 +318,16 @@
                             <div class="hr-line-dashed"></div>
                             <div class="form-group" id="data_1">
                                 <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_price') . ':', 'guarantee_price', array('class' => 'wide required')); ?>
+                                    <?php echo form_label($this->lang->line('guarantee_mantenimiento') . ':', 'mantenimiento', array('class' => 'wide required')); ?>
                                 </label>
                                 <div class="col-sm-10">
                                     <div class="input-group">
                                         <?php
                                         echo form_input(
                                                 array(
-                                                    'name' => 'guarantee_price',
-                                                    'id' => 'guarantee_price',
-                                                    'value' => $guarantee_info->price,
+                                                    'name' => 'mantenimiento',
+                                                    'id' => 'mantenimiento',
+                                                    'value' => $loan_info->mantenimiento,
                                                     'class' => 'form-control'
                                                 )
                                         );
@@ -388,51 +336,18 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_proof') . ':', 'guarantee_proof', array('class' => 'wide')); ?>
-                                </label>
-                                <div class="col-sm-10">
-                                    <div class='form_field'>
-                                        <ul class="sel-proof">   
-                                            <?php if (is_array($proofs)): ?>
-                                                <?php foreach ($proofs as $proof): ?>
-                                            <li><input type="hidden" name="proofs[]" value="<?= $proof["id"]; ?>" /><a href="<?= getDomain(); ?>uploads/loan-<?= $loan_info->loan_id; ?>/<?= $proof["filename"]; ?>" target="_blank"><?= (trim($proof["descriptions"]) !== "") ? $proof["descriptions"] : $proof["filename"]; ?></a></li>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </ul>
-                                        <a href="<?=  site_url(); ?>/loans/attachments/<?= $loan_info->loan_id; ?>/proof" data-toggle='modal' data-target='#attachment_modal' >Select from attachment</a>
-                                    </div>      
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_images') . ':', 'guarantee_images', array('class' => 'wide')); ?>
-                                </label>
-                                <div class="col-sm-10">
-                                    <ul class="sel-images">  
-                                        <?php if (is_array($pimages)): ?>
-                                            <?php foreach ($pimages as $pimage): ?>
-                                                <li><input type="hidden" name="images[]" value="<?= $pimage["id"]; ?>" /><a href="<?= getDomain(); ?>uploads/loan-<?= $loan_info->loan_id; ?>/<?= $pimage["filename"]; ?>" target="_blank"><?= (trim($pimage["descriptions"]) !== "") ? $pimage["descriptions"] : $pimage["filename"]; ?></a></li>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </ul>
-                                    <a href="<?=  site_url(); ?>/loans/attachments/<?= $loan_info->loan_id; ?>/images" data-toggle='modal' data-target='#attachment_modal'>Select from attachment</a>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    <?php echo form_label($this->lang->line('guarantee_observations') . ':', 'guarantee_observations', array('class' => 'wide')); ?>
+                                    <?php echo form_label($this->lang->line('guarantee_observations') . ':', 'observacion_lote', array('class' => 'wide')); ?>
                                 </label>
                                 <div class="col-sm-10">
                                     <?php
                                     echo form_textarea(
                                             array(
-                                                'name' => 'guarantee_observations',
-                                                'id' => 'guarantee_observations',
-                                                'value' => $guarantee_info->observations,
+                                                'name' => 'observacion_lote',
+                                                'id' => 'observacion_lote',
+                                                'value' => $loan_info->observacion_lote,
                                                 'class' => 'form-control'
                                             )
                                     );
@@ -561,8 +476,8 @@
             <a class="btn btn-default" id="btn-close" href="<?=site_url("loans"); ?>"><?= $this->lang->line("common_close"); ?></a>
             <button id="btn-approve" class="btn btn-success" type="button"><?= $this->lang->line('loans_approve'); ?></button>
             <?php if ($loan_info->loan_id > 0): ?>
-                <a href="<?= site_url("loans/" . ($loan_info->loan_type_id > 0 ? "generate_breakdown" : "fix_breakdown") . "/$loan_info->loan_id"); ?>" target="_blank" id="btn-sched" class="btn btn-warning"><?= $this->lang->line('loans_breakdown'); ?></a>
-                <a href="<?= site_url("loans/print_disclosure/$loan_info->loan_id"); ?>" target="_blank" id="btn-break-gen" class="btn btn-primary" type="button"><?= $this->lang->line('loans_disclosure'); ?></a>
+                <!--<a href="<?= site_url("loans/" . ($loan_info->loan_type_id > 0 ? "generate_breakdown" : "fix_breakdown") . "/$loan_info->loan_id"); ?>" target="_blank" id="btn-sched" class="btn btn-warning"><?= $this->lang->line('loans_breakdown'); ?></a>
+                <a href="<?= site_url("loans/print_disclosure/$loan_info->loan_id"); ?>" target="_blank" id="btn-break-gen" class="btn btn-primary" type="button"><?= $this->lang->line('loans_disclosure'); ?></a>-->
             <?php endif; ?>
             <button id="btn-edit" class="btn btn-danger" type="button"><?= $this->lang->line('common_edit'); ?></button>
             <?php
@@ -737,7 +652,23 @@ echo form_close();
             $("#inp-customer").val("");
             $("#inp-customer").show();
             $("#customer").val("");
+           
         });
+
+
+
+        
+        
+        $(document).on("click", ".btn-remove-row2", function () {
+            $("#sp-guarantee").hide();
+            $("#sp-guarantee").html("");
+            $("#inp-guarantee").val("");
+            $("#inp-guarantee").show();
+            $("#guarantee").val("");
+        });
+
+
+       
 
         $('#inp-customer').autocomplete({
             serviceUrl: '<?php echo site_url("loans/customer_search"); ?>',
@@ -747,6 +678,16 @@ echo form_close();
                 $("#sp-customer").html(suggestion.value + ' <span><a href="javascript:void(0)" title="Remove Customer" class="btn-remove-row"><i class="fa fa-times"></i></a></span>');
                 $("#sp-customer").show();
                 $("#inp-customer").hide();
+            }
+        });
+
+        $('#inp-guarantee').autocomplete({
+            serviceUrl: '<?php echo site_url("loans/lote_search"); ?>',
+            onSelect: function (suggestion) {
+                $("#guarantee").val(suggestion.data);
+                $("#sp-guarantee").html(suggestion.value + ' <span><a href="javascript:void(0)" title="Remove Guarantee" class="btn-remove-row2"><i class="fa fa-times"></i></a></span>');
+                $("#sp-guarantee").show();
+                $("#inp-guarantee").hide();
             }
         });
 
@@ -775,12 +716,14 @@ echo form_close();
             rules: {
                 account: "required",
                 amount: "required",
-                "inp-customer": "required"
+                "inp-customer": "required",
+                "inp-guarantee": "required"
             },
             messages: {
                 account: "<?php echo $this->lang->line('loans_account_required'); ?>",
                 amount: "<?php echo $this->lang->line('loans_amount_required'); ?>",
-                "inp-customer": "<?php echo $this->lang->line('loans_customer_required'); ?>"
+                "inp-customer": "<?php echo $this->lang->line('loans_customer_required'); ?>",
+                "inp-guarantee": "<?php echo $this->lang->line('loans_customer_required'); ?>"
             }
         };
 
