@@ -155,12 +155,7 @@
       
         var settings = {
             submitHandler: function (form) {
-                var r = confirm("Press a button!");
-                if(r == true){
-
-                }else{
-                    return false;
-                }
+                
                
                 $("#submit").prop("disabled", true);
                 $(form).ajaxSubmit({
