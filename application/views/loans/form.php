@@ -607,6 +607,7 @@ echo form_close();
         if ($("#loan_id").val() > -1)
         {
             $(".btn-remove-row").hide();
+            $(".btn-remove-row2").hide();
             $(".remove-file").hide();
             $("#loan_form input, textarea").prop("readonly", true);
             $("#loan_form input[type='hidden']").prop("readonly", false);

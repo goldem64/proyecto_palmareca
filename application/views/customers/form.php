@@ -223,6 +223,35 @@
 
         var settings = {
             submitHandler: function (form) {
+                var nombre = $('#first_name').val();
+                var apellido = $('#last_name').val();
+                var conyuge = $('#conyuge_name').val();
+                var direccion = $('#address_1').val();
+                var telefono_casa = $('#phone_number').val();
+                var celular = $('#celular').val();
+                var oficina = $('#oficina').val();
+                var email = $('#email').val();
+                var fecha_nacimiento = $('#fecha_nacimiento').val();
+                var comentarios = $('#comments').val();
+
+
+                var mensaje = 'CONFIRMAR DATOS DEL CLIENTE .\n\n';
+                mensaje+= '     Nombre: ' + nombre + ' ' + apellido + '\n';
+                mensaje+= '     Conyuge: ' + conyuge + '\n';
+                mensaje+= '     Direccion: ' + direccion + '\n';
+                mensaje+= '     Telefono casa: ' + telefono_casa + '\n';
+                mensaje+= '     celular: ' + celular + '\n';
+                mensaje+= '     oficina: ' + oficina + '\n';
+                mensaje+= '     email: ' + email + '\n';
+                mensaje+= '     fecha de nacimiento: ' + fecha_nacimiento + '\n';
+                mensaje+= '     Comentarios: ' + comentarios + '\n';
+                
+                var r = window.confirm(mensaje);
+                if(r == true){
+
+                }else{
+                    return false;
+                }
                 $("#submit").prop("disabled", true);
                 $(form).ajaxSubmit({
                     success: function (response) {
