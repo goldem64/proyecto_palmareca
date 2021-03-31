@@ -155,7 +155,7 @@
       
         var settings = {
             submitHandler: function (form) {
-                var desarrollo = $('desarrollo').val();
+                var desarrollo = $('#desarrollo').val();
                 var r = confirm("desarrollo " + desarrollo);
                 if(r == true){
 
