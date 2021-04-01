@@ -39,7 +39,7 @@ class Loan extends CI_Model {
                    CONCAT(approver.first_name, ' ', approver.last_name) as approver_name,
                    IF (
                         l.loan_type_id = 0,
-                        'Lagunera SM 10 Lote 1',
+                        CONCAT(lote.desarrollo, ' SM ', lote.sm, ' lote ', lote.lote),
                         lt.name
                    ) AS loan_type";
 
@@ -48,8 +48,9 @@ class Loan extends CI_Model {
         $this->db->join('people as customer', 'customer.person_id = l.customer_id', 'LEFT');
         $this->db->join('people as agent', 'agent.person_id = l.loan_agent_id', 'LEFT');
         $this->db->join('people as approver', 'approver.person_id = l.loan_approved_by_id', 'LEFT');
+        $this->db->join('lotes as lote', 'lote.lote_id = l.lote_id', 'LEFT');            
         $this->db->join('loan_types lt', 'lt.loan_type_id = l.loan_type_id', 'LEFT');
-
+       
         $employee_id = ($sel_user) ? $sel_user : $employee_id;
 
         if ($employee_id > 1)
