@@ -283,6 +283,7 @@
             table_scheds += '</tr>';
             
             var total_amount = 0;
+            var fecha_ingresada = new Date( $("#start_date").val() );
             for (var i=0; i < term; i++)
             {
                
@@ -302,6 +303,8 @@
                 
                 var payment_date = new Date( $("#start_date").val() );
                 
+                
+                
                 switch( $("#term_period").val() )
                 {
                     case "day":
@@ -311,14 +314,23 @@
                         payment_date.setDate( payment_date.getDate() + ((i+1)*7) );
                         break;
                     case "month":
-                        payment_date.setMonth( payment_date.getMonth( ) + (i+1) );
+                        payment_date.setMonth( payment_date.getMonth() + (i) );
                         break;
                     case "year":
                         payment_date = new Date ( payment_date.getFullYear() + (i+1), payment_date.getMonth(), payment_date.getDate() );
                         break;
+                        
                 }
+                    if (payment_date.getMonth() === 2 && fecha_ingresada.getDate() === 30){
+                        fecha =  "2/28" + "/" + payment_date.getFullYear(); 
+                        payment_date2 = new Date(fecha);
+                        var d_date = (payment_date2.getMonth() + 1) + "/" + payment_date2.getDate() + "/" + payment_date2.getFullYear();
+                    }else{
+                        var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
+
+                    }
                 
-                var d_date = payment_date.getDate() + "/" + (payment_date.getMonth() + 1) + "/" + payment_date.getFullYear();
+                //var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
                 
                 var inputs = '<input type="hidden" name="payment_date[]" value="'+ d_date +'" />\n\
                            <input type="hidden" name="payment_balance[]" value="'+ balance_owed +'" />\n\
