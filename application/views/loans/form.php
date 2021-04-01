@@ -698,6 +698,52 @@ echo form_close();
                 set_feedback("Error: Please correct all the required fields", 'error_message', true);
             },
             submitHandler: function (form) {
+                var nombre = $('#sp-customer').text();
+                var firma = $('#apply_date').val();
+                var propiedad = $('#sp-guarantee').text();
+                var enganche = $('#enganche').val();
+                var mantenimiento = $('#mantenimiento').val();
+                var cantidad = $('#amount1').val();
+                var cuotas = $('#term').val();
+                var primer_pago = $('#start_date').val();
+                var descripcion = $('#description').val();
+                var fdividir = $('#flagDividir').val();
+
+
+                var mensaje = 'CONFIRMAR DATOS DEL CONTRATO .\n\n';
+                mensaje+= '     Nombre:   ' + nombre + '\n';
+                mensaje+= '     Firma de contrato:   ' + firma + '\n';
+                mensaje+= '     Lote:   ' + propiedad + '\n';
+                mensaje+= '     Enganche:   ' + addCommas(enganche) + '\n';
+                mensaje+= '     mantenimiento:   ' + addCommas(mantenimiento) + '\n';
+                mensaje+= '     Cantidad:   ' + addCommas(cantidad) + '\n';
+               
+                
+
+               
+                if (fdividir === '1'){
+                    cu1 = $('#cuotas1').val();
+                    ca1 = $('#cantidad1').val();
+                    cu2 = $('#cuotas2').val();
+                    ca2 = $('#cantidad2').val();
+                    cu3 = $('#cuotas3').val();
+                    ca3 = $('#cantidad3').val();
+                    mensaje+= '     Cuotas:   ' + cuotas + '\n';
+                    mensaje+= '             ' +  cu1 + " cuotas de: " + addCommas(ca1) + '\n';
+                    mensaje+= '             ' +  cu2 + " cuotas de: " + addCommas(ca2) + '\n';
+                    mensaje+= '             ' +  cu3 + " cuotas de: " + addCommas(ca3) + '\n';
+                }else{
+                mensaje+= '     No. cuotas:   ' + cuotas + '\n';
+                }
+                mensaje+= '     Primer pago:   ' + primer_pago + '\n';
+                mensaje+= '     Descripcion: ' + descripcion + '\n';
+                
+                var r = window.confirm(mensaje);
+                if(r == true){
+
+                }else{
+                    return false;
+                }
                 $(form).ajaxSubmit({
                     success: function (response) {
                         post_loan_form_submit(response);

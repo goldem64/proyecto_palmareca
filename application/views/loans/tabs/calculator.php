@@ -292,7 +292,7 @@
                 }
                 if(i == (parseInt(cuotas1) + parseInt(cuotas2))  && dividir == 1){
                     payment_amount =parseInt(cantidad3);
-                    window.alert(payment_amount);
+                    //window.alert(payment_amount);
                 }
                 var compound_interest = (loan_amount * interest_rate);
                 var principal_amount = (payment_amount - compound_interest).toFixed(2);
