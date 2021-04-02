@@ -320,11 +320,7 @@
                        
                         if(i ===  1 || ((i-1) % 12 == 0)){
                            
-                                window.alert(payment_date.getMonth());
-                                window.alert("emtre");
-                            payment_date.setDate(28);
-                            
-                           
+                                payment_date.setDate(28);
                         }
 
                         
@@ -341,10 +337,10 @@
                         
                 }
                 
-                //window.alert("Mes: " + payment_date.getMonth() + " Dia " + fecha_ingresada.getDate());
+                
                    
                          var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
-                        //window.alert("Mes: " + payment_date.getMonth());
+                        
                       
                 
                 
