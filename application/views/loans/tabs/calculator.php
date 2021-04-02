@@ -55,10 +55,9 @@
     </div>
     <div class="col-sm-2">
         <select class="form-control" name="term_period" id="term_period">
-            <!-- <option value="day" <?= $c_payment_scheds["term_period"] === "day" ? 'selected="selected"' : ''; ?>><?= $this->lang->line('common_day'); ?></option>
-            <option value="week" <?= $c_payment_scheds["term_period"] === "week" ? 'selected="selected"' : ''; ?>><?= $this->lang->line('common_week'); ?></option> -->
+            
             <option value="month" <?= $c_payment_scheds["term_period"] === "monthly" ? 'selected="selected"' : ''; ?>><?= $this->lang->line('common_month'); ?></option>
-            <!-- <option value="year" <?= $c_payment_scheds["term_period"] === "yearly" ? 'selected="selected"' : ''; ?>><?= $this->lang->line('common_year'); ?></option> -->
+            
         </select>
     </div>
 </div>
@@ -283,7 +282,9 @@
             table_scheds += '</tr>';
             
             var total_amount = 0;
-            var fecha_ingresada = new Date( $("#start_date").val() );
+           
+            var bandera_febrero = 0;
+           
             for (var i=0; i < term; i++)
             {
                
@@ -301,10 +302,10 @@
                 var balance_owed = (loan_amount - payment_amount ).toFixed(2);
                 total_amount += payment_amount;
                 
-                var payment_date = new Date( $("#start_date").val() );
+                payment_date = new Date( $("#start_date").val() );
                 
-                
-                
+               
+                //window.alert("Periodo: " + $("#term_period").val());
                 switch( $("#term_period").val() )
                 {
                     case "day":
@@ -314,23 +315,39 @@
                         payment_date.setDate( payment_date.getDate() + ((i+1)*7) );
                         break;
                     case "month":
-                        payment_date.setMonth( payment_date.getMonth() + (i) );
+
+                      
+                       
+                        if(i ===  1 || ((i-1) % 12 == 0)){
+                           
+                                window.alert(payment_date.getMonth());
+                                window.alert("emtre");
+                            payment_date.setDate(28);
+                            
+                           
+                        }
+
+                        
+                    
+                       
+                            payment_date.setMonth( payment_date.getMonth() + i );
+                          
+                       
+                        
                         break;
                     case "year":
                         payment_date = new Date ( payment_date.getFullYear() + (i+1), payment_date.getMonth(), payment_date.getDate() );
                         break;
                         
                 }
-                    if (payment_date.getMonth() === 2 && fecha_ingresada.getDate() === 30){
-                        fecha =  "2/28" + "/" + payment_date.getFullYear(); 
-                        payment_date2 = new Date(fecha);
-                        var d_date = (payment_date2.getMonth() + 1) + "/" + payment_date2.getDate() + "/" + payment_date2.getFullYear();
-                    }else{
-                        var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
-
-                    }
                 
-                //var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
+                //window.alert("Mes: " + payment_date.getMonth() + " Dia " + fecha_ingresada.getDate());
+                   
+                         var d_date = (payment_date.getMonth() + 1) + "/" + payment_date.getDate() + "/" + payment_date.getFullYear();
+                        //window.alert("Mes: " + payment_date.getMonth());
+                      
+                
+                
                 
                 var inputs = '<input type="hidden" name="payment_date[]" value="'+ d_date +'" />\n\
                            <input type="hidden" name="payment_balance[]" value="'+ balance_owed +'" />\n\
