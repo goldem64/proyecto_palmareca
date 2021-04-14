@@ -212,7 +212,7 @@
             
             if( dividir == 1){
                 var sumatotal = (parseInt(cantidad1)* parseInt(cuotas1)) + (parseInt(cantidad2) * parseInt(cuotas2)) + (parseInt(cantidad3) * parseInt(cuotas3));
-               window.alert("sumatotal = " + sumatotal+ " loan_amount " + loan_amount + " cantidad3 " + cantidad3);
+               //window.alert("sumatotal = " + sumatotal+ " loan_amount " + loan_amount + " cantidad3 " + cantidad3);
                 if ( sumatotal != loan_amount){
                 alertify.alert("Error en cuotas o cantidades");
                 return false;
@@ -327,7 +327,7 @@
                         fechai.setMonth(fechai.getMonth() + (i-1));
                         if(fechai.getMonth() === 0){
                             if(fechai.getDate() === 30){
-                                window.alert("entre ")
+                                
                                 payment_date.setDate(28);
 
                             }
