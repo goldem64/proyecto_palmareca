@@ -203,10 +203,16 @@
             var cantidad1 = $("#cantidad1").val();
             var cantidad2 = $("#cantidad2").val();
             var cantidad3 = $("#cantidad3").val();
+
+            if (cantidad3 == ""){
+                cantidad3 = 0;
+                cuotas3 = 0;
+            }
             
             
             if( dividir == 1){
                 var sumatotal = (parseInt(cantidad1)* parseInt(cuotas1)) + (parseInt(cantidad2) * parseInt(cuotas2)) + (parseInt(cantidad3) * parseInt(cuotas3));
+               window.alert("sumatotal = " + sumatotal+ " loan_amount " + loan_amount + " cantidad3 " + cantidad3);
                 if ( sumatotal != loan_amount){
                 alertify.alert("Error en cuotas o cantidades");
                 return false;
