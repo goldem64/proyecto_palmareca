@@ -309,6 +309,7 @@
                 total_amount += payment_amount;
                 
                 payment_date = new Date( $("#start_date").val() );
+                fechai = new Date( $("#start_date").val());
                 
                
                 //window.alert("Periodo: " + $("#term_period").val());
@@ -323,10 +324,15 @@
                     case "month":
 
                       
-                       
-                        if(i ===  1 || ((i-1) % 12 == 0)){
-                           
+                        fechai.setMonth(fechai.getMonth() + (i-1));
+                        if(fechai.getMonth() === 0){
+                            if(fechai.getDate() === 30){
+                                window.alert("entre ")
                                 payment_date.setDate(28);
+
+                            }
+                           
+                               
                         }
 
                         
