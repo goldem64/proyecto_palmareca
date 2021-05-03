@@ -289,33 +289,33 @@ class Lote extends CI_Model {
 
         $this->db->from('lotes');
         //$this->db->join('people', 'lotes.person_id=people.person_id');
-        $this->db->where("(desarrollo LIKE '%" . $this->db->escape_like_str($search) . "%' or 
-		lote LIKE '%" . $this->db->escape_like_str($search) . "%' or 
-		CONCAT(`desarrollo`,' ',`lote`, ' ',`sm`) LIKE '%" . $this->db->escape_like_str($search) . "%') and deleted=0
+        $this->db->where("(desarrollo LIKE '%" . $this->db->escape_like_str($search) . "%'  or 
+        sm LIKE '%" . $this->db->escape_like_str($search) . "%' or
+		CONCAT(`desarrollo`,' ',`sm`) LIKE '%" . $this->db->escape_like_str($search) . "%') and deleted=0
                     " . $add_where . "
                     ");
-        $this->db->order_by("desarrollo", "asc");
+        $this->db->order_by("lote", "desc");
         $by_name = $this->db->get();
         foreach ($by_name->result() as $row)
         {
-            $suggestions[] = $row->lote_id . '|' .$row->desarrollo . ' SM ' . $row->sm . ' Lote ' . $row->lote .'|' . $row->lote;
+            $suggestions[] = $row->lote_id . '|' .$row->desarrollo . ' ' .$row->sm .  ' '.$row->lote;
         }
-
-        $this->db->from('lotes');
-        $this->db->where('deleted', 0);
-        $this->db->like("lote", $search);
-        $this->db->order_by("desarrollo", "asc");
-        $by_account_number = $this->db->get();
-        foreach ($by_account_number->result() as $row)
-        {
-            $suggestions[] = $row->lote_id . '|' . $row->lote . '|' . $row->sm;
-        }
+            
+        // $this->db->from('lotes');
+        // $this->db->where('deleted', 0);
+        // $this->db->like("lote", $search);
+        // $this->db->order_by("desarrollo", "asc");
+        // $by_account_number = $this->db->get();
+        // foreach ($by_account_number->result() as $row)
+        // {
+        //     $suggestions[] = $row->lote_id . '|' . $row->lote . '|' . $row->sm;
+        // }
 
         //only return $limit suggestions
-        if (count($suggestions > $limit))
-        {
-            $suggestions = array_slice($suggestions, 0, $limit);
-        }
+        // if (count($suggestions > $limit))
+        // {
+        //     $suggestions = array_slice($suggestions, 0, $limit);
+        // }
         return $suggestions;
     }
 
