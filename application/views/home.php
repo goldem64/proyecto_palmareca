@@ -1,6 +1,7 @@
 
 <?php $this->load->view("partial/header"); ?>
 
+<!--
 <div class="row">
     <div class="col-lg-4">
         <div class="inqbox float-e-margins">
@@ -43,5 +44,5 @@
         </div>
     </div>
 </div>
-
+-->
 <?php $this->load->view("partial/footer"); ?>

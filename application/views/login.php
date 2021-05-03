@@ -15,15 +15,22 @@
 
         <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
         <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-
+    <style>
+    body{
+        background-image: url(../img/palmas.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+   
+    }
+         </style>
 
 
     </head>
-    <body class="gray-bg">
+    <body>
         <div class="loginColumns animated fadeInDown">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="font-bold"><?php echo $this->lang->line('login_welcome_message'); ?> <?= APP_NAME . " " . $this->config->item('application_version'); ?></h2>
+                    <h2 class="font-bold" style="text-align: justify"><?php echo $this->lang->line('login_welcome_message'); ?> <?= APP_NAME . " " . $this->config->item('application_version'); ?></h2>
 
                     <div style="text-align: justify">
                         <?php echo $this->lang->line('common_welcome_message'); ?>
@@ -44,7 +51,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
                         <a href="javascript:void(0)">
-                            <small>Forgot password?</small>
+                           <!-- <small>Forgot password?</small>-->
                         </a>
                         <!--
                         <p class="text-muted text-center">
@@ -63,7 +70,7 @@
                     Copyright <?php echo COMPANY_NAME; ?>
                 </div>
                 <div class="col-md-6 text-right">
-                    <small>© 2015-<?php echo date('Y'); ?></small>
+                    <small>© <?php echo date('Y'); ?></small>
                 </div>
             </div>
         </div>

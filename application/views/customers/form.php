@@ -57,7 +57,7 @@
                                 <div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
                                 <ul id="error_message_box"></ul>
                             </div>
-                            <?php $this->load->view("people/form_basic_info"); ?>
+                            <?php $this->load->view("people/form_basic_info3"); ?>
 
                             <div class="form-group"><label class="col-sm-2 control-label"><?php echo form_label($this->lang->line('customers_account_number') . ':', 'account_number'); ?></label>
                                 <div class="col-sm-10">
@@ -76,12 +76,7 @@
                             <div class="hr-line-dashed"></div>
 
 
-                            <div class="form-group"><label class="col-sm-2 control-label"><?php echo form_label($this->lang->line('customers_taxable') . ':', 'taxable'); ?></label>
-                                <div class="col-sm-10">
-                                    <?php echo form_checkbox('taxable', '1', $person_info->taxable == '' ? TRUE : (boolean) $person_info->taxable); ?>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
+                            
 
 
 
@@ -185,6 +180,8 @@
 
 <?= form_close(); ?>
 
+
+
 <?php $this->load->view("partial/footer"); ?>
 
 <script src="<?php echo base_url(); ?>js/people.js?v=<?= time(); ?>"></script>
@@ -226,6 +223,35 @@
 
         var settings = {
             submitHandler: function (form) {
+                var nombre = $('#first_name').val();
+                var apellido = $('#last_name').val();
+                var conyuge = $('#conyuge_name').val();
+                var direccion = $('#address_1').val();
+                var telefono_casa = $('#phone_number').val();
+                var celular = $('#celular').val();
+                var oficina = $('#oficina').val();
+                var email = $('#email').val();
+                var fecha_nacimiento = $('#fecha_nacimiento').val();
+                var comentarios = $('#comments').val();
+
+
+                var mensaje = 'CONFIRMAR DATOS DEL CLIENTE .\n\n';
+                mensaje+= '     Nombre: ' + nombre + ' ' + apellido + '\n';
+                mensaje+= '     Conyuge: ' + conyuge + '\n';
+                mensaje+= '     Direccion: ' + direccion + '\n';
+                mensaje+= '     Telefono casa: ' + telefono_casa + '\n';
+                mensaje+= '     celular: ' + celular + '\n';
+                mensaje+= '     oficina: ' + oficina + '\n';
+                mensaje+= '     email: ' + email + '\n';
+                mensaje+= '     fecha de nacimiento: ' + fecha_nacimiento + '\n';
+                mensaje+= '     Comentarios: ' + comentarios + '\n';
+                
+                var r = window.confirm(mensaje);
+                if(r == true){
+
+                }else{
+                    return false;
+                }
                 $("#submit").prop("disabled", true);
                 $(form).ajaxSubmit({
                     success: function (response) {
@@ -253,6 +279,8 @@
 
         function post_person_form_submit(response)
         {
+           
+         
             if (!response.success)
             {
                 set_feedback(response.message, 'error_message', true);

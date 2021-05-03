@@ -223,6 +223,10 @@ class Loans extends Secure_area implements iData_controller {
             'loan_type_id' => ifNull($this->input->post('loan_type_id')),
             'loan_amount' => $this->input->post('amount'),
             'customer_id' => $this->input->post('customer'),
+            'lote_id' => $this->input->post('guarantee'),
+            'enganche' => $this->input->post('enganche'),
+            'mantenimiento' => $this->input->post('mantenimiento'),
+            'observacion_lote' => $this->input->post('observacion_lote'),
             'loan_applied_date' => strtotime($this->input->post('apply_date')),
             'remarks' => $this->input->post('remarks'),
             'loan_agent_id' => $this->input->post('agent'),
@@ -242,18 +246,19 @@ class Loans extends Secure_area implements iData_controller {
             $loan_data["loan_payment_date"] = strtotime($pay_breakdowns["schedule"][0]);
         }
 
-        $guarantee_data = array(
-            'loan_id' => $loan_id,
-            'name' => $this->input->post("guarantee_type"),
-            'type' => $this->input->post("guarantee_name"),
-            'brand' => $this->input->post("guarantee_brand"),
-            'make' => $this->input->post("guarantee_make"),
-            'serial' => $this->input->post("guarantee_serial"),
-            'proof' => json_encode($this->input->post("proofs")),
-            'images' => json_encode($this->input->post("images")),
-            'price' => $this->input->post("guarantee_price"),
-            'observations' => $this->input->post("guarantee_observations")
-        );
+        // $guarantee_data = array(
+        //     'loan_id' => $loan_id,
+        //     'name' => $this->input->post("guarantee"),
+        //     'type' => $this->input->post("guarantee_type"),
+        //     'brand' => "NA",
+        //     'make' => "NA",
+        //     'serial' => "NA",
+        //     //'serial' => $this->input->post("guarantee_serial"),
+        //     'proof' => json_encode($this->input->post("proofs")),
+        //     'images' => json_encode($this->input->post("images")),
+        //     'price' => $this->input->post("guarantee_price"),
+        //     'observations' => $this->input->post("guarantee_observations")
+        // );
 
         $has_payment = false;
         $paid_amount = $this->input->post("paid_amount");
@@ -297,12 +302,12 @@ class Loans extends Secure_area implements iData_controller {
                 $this->Payment->save($payment_data, -1);
             }
             
-            $this->Guarantee->save($guarantee_data, $loan_id);
+            //$this->Guarantee->save($guarantee_data, $loan_id);
         }
         else//failure
         {
             echo json_encode(array('success' => false, 'message' => $this->lang->line('loans_error_adding_updating') . ' ' .
-                $loan_data['account'], 'loan_id' => -1));
+                $loan_data['remarks'], 'loan_id' => -1));
         }
     }
 
@@ -1011,6 +1016,21 @@ class Loans extends Secure_area implements iData_controller {
     function customer_search()
     {
         $suggestions = $this->Customer->get_customer_search_suggestions($this->input->get('query'), 30);
+        $data = $tmp = array();
+
+        foreach ($suggestions as $suggestion):
+            $t = explode("|", $suggestion);
+            $tmp = array("value" => $t[1], "data" => $t[0]);
+            $data[] = $tmp;
+        endforeach;
+
+        echo json_encode(array("suggestions" => $data));
+        exit;
+    }
+
+    function lote_search()
+    {
+        $suggestions = $this->Lote->get_lote_search_suggestions($this->input->get('query'), 30);
         $data = $tmp = array();
 
         foreach ($suggestions as $suggestion):

@@ -1,8 +1,11 @@
 <?php
 $lang['module_home'] = 'Inicio';
 
-$lang['module_customers']='Prestatario';
+$lang['module_customers']='Clientes';
 $lang['module_customers_desc'] = 'Agregar, Actualizar, Borrar y Buscar clientes';
+
+$lang['module_lotes']='Lotes';
+$lang['module_lotes_desc'] = 'Agregar, Actualizar, Borrar y Buscar lotes';
 
 $lang['module_suppliers'] = 'Proveedores';
 $lang['module_suppliers_desc'] = 'Agregar, Actualizar, Borrar y Buscar proveedores';
@@ -31,10 +34,14 @@ $lang['module_giftcards_desc'] = 'Agregar, Actualizar, Borrar y Buscar Tarjetas 
 $lang['module_item_kits'] = 'Kits de Artículos';
 $lang['module_item_kits_desc'] = 'Agregar, Actualizar, Borrar y Buscar Kits de Artículos';
 
-$lang['module_loans']='Prestamos';
-$lang['module_loans_desc']='Agregar, Actualizar, Borrar y Buscar Prestamos';
+/*$lang['module_loans']='Prestamos';
+$lang['module_loans_desc']='Agregar, Actualizar, Borrar y Buscar Prestamos';*/
 
-$lang['module_payments']='Payments';
+$lang['module_loans']='Contratos';
+$lang['module_loans_desc']='Agregar, Actualizar, Borrar y Buscar Contratos';
+
+//$lang['module_payments']='Payments';
+$lang['module_payments']='Pagos';
 $lang['module_payments_desc']='Agregar, Actualizar, Borrar y Buscar el Pago';
 
 $lang['module_loan_types']='Prestamos el tipo';

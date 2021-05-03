@@ -7,6 +7,8 @@ class Customers extends Person_controller {
     function __construct()
     {
         parent::__construct('customers');
+        
+
     }
 
     function index()
@@ -148,22 +150,43 @@ class Customers extends Person_controller {
     function save($customer_id = -1)
     {
         $person_data = array(
-            'first_name' => $this->input->post('first_name'),
-            'last_name' => $this->input->post('last_name'),
-            'email' => $this->input->post('email'),
-            'phone_number' => $this->input->post('phone_number'),
-            'address_1' => $this->input->post('address_1'),
-            'address_2' => $this->input->post('address_2'),
-            'city' => $this->input->post('city'),
-            'state' => $this->input->post('state'),
-            'zip' => $this->input->post('zip'),
-            'country' => $this->input->post('country'),
-            'comments' => $this->input->post('comments')
+            'first_name' => $this->input->post('first_name'), //1
+            'last_name' => $this->input->post('last_name'),//2
+            'email' => $this->input->post('email'),//3
+            'phone_number' => $this->input->post('phone_number'),//4
+            'address_1' => $this->input->post('address_1'),//5
+            'address_2' => $this->input->post('address_2'),//6
+            'city' => 'NA',//7
+            'state' => 'NA',//8
+            'zip' => 'NA',//9
+            'country' => 'NA',//10
+            'comments' => $this->input->post('comments'),//11
         );
 
         $customer_data = array(
-            'account_number' => $this->input->post('account_number') == '' ? null : $this->input->post('account_number'),
-            'taxable' => $this->input->post('taxable') == '' ? 0 : 1,
+            'account_number' => $this->input->post('account_number') == '' ? null : $this->input->post('account_number'), //12
+            'taxable' => $this->input->post('taxable') == '' ? 0 : 1, //13
+            'conyuge_name' => $this->input->post('conyuge_name'),
+            'celular' => $this->input->post('celular'),
+            'oficina' => $this->input->post('oficina'),
+            'lugar_nacimiento' => $this->input->post('lugar_nacimiento'),
+            'fecha_nacimiento' => $this->input->post('fecha_nacimiento'),
+            'lugar_trabajo' => $this->input->post('lugar_trabajo'),
+            'puesto' => $this->input->post('puesto'),
+            'facebook' => $this->input->post('facebook'),
+            'refnombre1' => $this->input->post('refnombre1'),
+            'refdireccion1' => $this->input->post('refdireccion1'),
+            'reftel1' => $this->input->post('reftel1'),
+            'refparentesco1' => $this->input->post('refparentesco1'),
+            'refnombre2' => $this->input->post('refnombre2'),
+            'refdireccion2' => $this->input->post('refdireccion2'),
+            'reftel2' => $this->input->post('reftel2'),
+            'refparentesco2' => $this->input->post('refparentesco2'),
+            'refnombre3' => $this->input->post('refnombre3'),
+            'refdireccion3' => $this->input->post('refdireccion3'),
+            'reftel3' => $this->input->post('reftel3'),
+            'refparentesco3' => $this->input->post('refparentesco3'),
+
         );
 
         if (is_array($this->input->post("sources")))
@@ -199,8 +222,45 @@ class Customers extends Person_controller {
         }
         else//failure
         {
-            echo json_encode(array('success' => false, 'message' => $this->lang->line('customers_error_adding_updating') . ' ' .
-                $person_data['first_name'] . ' ' . $person_data['last_name'], 'person_id' => -1));
+            // echo json_encode(array('success' => false, 'message' => $this->lang->line('customers_error_adding_updating') . ' ' .
+            //     $person_data['first_name'] . ' ' . $person_data['last_name'], 'person_id' => -1));
+                
+                echo json_encode(array('success' => false, 'message' => $this->lang->line('customers_error_adding_updating') . ' ' .
+                $person_data['first_name'] .
+                ' ' . $person_data['last_name'].
+                ' ' . $customer_data['conyuge_name'].
+                ' ' . $person_data['email'].
+                ' ' . $person_data['phone_number'].
+                ' ' . $person_data['address_1'].
+                ' ' . $person_data['address_2'].
+                ' ' . $person_data['city'].
+                ' ' . $person_data['state'].
+                ' ' . $person_data['zip'].
+                ' ' . $person_data['country'].
+                ' ' . $customer_data['taxable'].
+                ' ' . $customer_data['celular'].
+                ' ' . $customer_data['oficina'].
+                ' ' . $customer_data['lugar_nacimiento'].
+                ' ' . $customer_data['fecha_nacimiento'].
+                ' ' . $customer_data['lugar_trabajo'].
+                ' ' . $customer_data['puesto'].
+                ' ' . $customer_data['facebook'].
+                ' ' . $customer_data['refnombre1'].
+                ' ' . $customer_data['refdireccion1'].
+                ' ' . $customer_data['reftel1'].
+                ' ' . $customer_data['refparentesco1'].
+                ' ' . $customer_data['refnombre2'].
+                ' ' . $customer_data['refdireccion2'].
+                ' ' . $customer_data['reftel2'].
+                ' ' . $customer_data['refparentesco2'].
+                ' ' . $customer_data['refnombre3'].
+                ' ' . $customer_data['refdireccion3'].
+                ' ' . $customer_data['reftel3'].
+                ' ' . $customer_data['refparentesco3'].
+                ' ' . $person_data['comments'].
+                ' ' . $customer_data['account_number'],
+
+                'person_id' => -1));
         }
     }
 

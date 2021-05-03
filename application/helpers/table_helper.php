@@ -6,7 +6,7 @@
 
 function get_people_manage_table($people, $controller)
 {
-    $CI = & get_instance();
+    $CI = &get_instance();
     $table = '<table class="tablesorter table table-bordered" id="sortable_table">';
 
     $headers = array('<input type="checkbox" id="select_all" />',
@@ -23,6 +23,29 @@ function get_people_manage_table($people, $controller)
     }
     $table.='</tr></thead><tbody>';
     $table.=get_people_manage_table_data_rows($people, $controller);
+    $table.='</tbody></table>';
+    return $table;
+}
+
+function get_people_manage_table2($people, $controller)
+{
+    $CI = & get_instance();
+    $table = '<table class="tablesorter table table-bordered" id="sortable_table">';
+
+    $headers = array('<input type="checkbox" id="select_all" />',
+        $CI->lang->line('common_desarrollo'),
+        $CI->lang->line('common_sm'),
+        $CI->lang->line('common_lote'),
+        $CI->lang->line('common_estado'),
+        '&nbsp');
+
+    $table.='<thead><tr>';
+    foreach ($headers as $header)
+    {
+        $table.="<th>$header</th>";
+    }
+    $table.='</tr></thead><tbody>';
+    $table.=get_people_manage_table_data_rows2($people, $controller);
     $table.='</tbody></table>';
     return $table;
 }
@@ -49,6 +72,28 @@ function get_people_manage_table_data_rows($people, $controller)
     return $table_data_rows;
 }
 
+function get_people_manage_table_data_rows2($people, $controller)
+{
+    $CI = & get_instance();
+    $table_data_rows = '';
+
+    foreach ($people->result() as $person)
+    {
+        $table_data_rows.=get_person_data_row2($person, $controller);
+    }
+
+    if ($people->num_rows() == 0)
+    {
+        $table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>" . $CI->lang->line('common_no_persons_to_display') . "</div></td></tr>";
+    }
+
+    return $table_data_rows;
+}
+
+
+
+
+
 function get_person_data_row($person, $controller)
 {
     $CI = & get_instance();
@@ -62,6 +107,25 @@ function get_person_data_row($person, $controller)
     $table_data_row.='<td width="30%">' . mailto($person->email, character_limiter($person->email, 22)) . '</td>';
     $table_data_row.='<td width="20%">' . character_limiter($person->phone_number, 13) . '</td>';
     $table_data_row.='<td width="5%">' . anchor($controller_name . "/view/$person->person_id/width:$width", $CI->lang->line('common_edit'), array('class' => 'modal_link', 'data-toggle' => 'modal', 'data-target' => '#customer_modal', 'title' => $CI->lang->line($controller_name . '_update'))) . '</td>';
+    $table_data_row.='</tr>';
+
+    return $table_data_row;
+}
+
+
+function get_person_data_row2($person, $controller)
+{
+    $CI = & get_instance();
+    $controller_name = strtolower(get_class($CI));
+    $width = $controller->get_form_width();
+
+    $table_data_row = '<tr>';
+    $table_data_row.="<td width='5%'><input type='checkbox' id='person_$person->lote_id' value='" . $person->lote_id . "'/></td>";
+    $table_data_row.='<td width="20%">' . character_limiter($person->desarrollo, 13) . '</td>';
+    $table_data_row.='<td width="20%">' . character_limiter($person->sm, 13) . '</td>';
+    $table_data_row.='<td width="20%">' . character_limiter($person->lote, 13) . '</td>';
+    $table_data_row.='<td width="20%">' . character_limiter($person->estado, 13) . '</td>';
+    $table_data_row.='<td width="5%">' . anchor($controller_name . "/view/$person->lote_id/width:$width", $CI->lang->line('common_edit'), array('class' => 'modal_link', 'data-toggle' => 'modal', 'data-target' => '#customer_modal', 'title' => $CI->lang->line($controller_name . '_update'))) . '</td>';
     $table_data_row.='</tr>';
 
     return $table_data_row;

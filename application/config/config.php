@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['application_version'] = '1.4.9';
+$config['application_version'] = '1.0';
+$config['desarrollador'] = 'IDC ideas, diseño y computacion';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

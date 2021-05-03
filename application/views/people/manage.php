@@ -51,10 +51,10 @@
                     <?php echo anchor("$controller_name/delete", $this->lang->line("common_delete"), array('id' => 'delete', 'class' => 'btn btn-primary btn-xs')); ?>
                     <?php if ($controller_name == 'customers') : ?>
                         <?php
-                        echo anchor("$controller_name/excel_import/width:$form_width", "<div class='btn btn-default btn-xs' style='float: left; margin-right: 10px'><span>Excel Import</span></div>", array('class' => 'thickbox none', 'title' => 'Import Items from Excel'));
+                        //echo anchor("$controller_name/excel_import/width:$form_width", "<div class='btn btn-default btn-xs' style='float: left; margin-right: 10px'><span>Excel Import</span></div>", array('class' => 'thickbox none', 'title' => 'Import Items from Excel'));
                         ?>	
                     <?php endif; ?>
-                    <a href="#" class="btn btn-default btn-xs" style="color: white" id="email"><?php echo $this->lang->line("common_email"); ?></a>
+                    <!--<a href="#" class="btn btn-default btn-xs" style="color: white" id="email"><?php echo $this->lang->line("common_email"); ?></a>-->
 
                 </div>
             </div>

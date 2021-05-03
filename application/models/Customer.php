@@ -338,6 +338,7 @@ class Customer extends Person {
         return $suggestions;
     }
 
+    
     /*
       Preform a search on customers
      */

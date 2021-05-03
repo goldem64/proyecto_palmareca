@@ -2,7 +2,7 @@
 $lang['common_submit'] = "Submit";
 $lang['common_save'] = "Save Changes";
 $lang['common_or'] = "OR";
-$lang['common_powered_by'] = "Powered by SoftReliance I.T. Solutions";
+$lang['common_powered_by'] = "Powered by goldem64";
 $lang['common_welcome'] = "Welcome";
 $lang['common_logout'] = "Logout";
 $lang['common_list_of'] = "List of";

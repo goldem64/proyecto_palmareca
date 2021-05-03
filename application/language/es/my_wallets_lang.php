@@ -26,10 +26,17 @@ $lang["my_wallet_type"] = "Tipo de cartera";
 $lang["my_wallet_transfer"] = "Transferir a";
 $lang["my_wallet_exceed_amount"] = "La cantidad no debe exceder en su saldo de cartera";
 
-$lang["common_my_wallet"] = "Mi Billetera";
-$lang["common_total_wallet"] = "Cartera total";
-$lang["common_loans"] = "Préstamos";
-$lang["common_total_loans"] = "Préstamos total";
-$lang["common_borrowers"] = "Prestatarios";
-$lang["common_total_borrowers"] = "Prestatarios total";
+// $lang["common_my_wallet"] = "Mi Billetera";
+// $lang["common_total_wallet"] = "Cartera total";
+// $lang["common_loans"] = "Préstamos";
+// $lang["common_total_loans"] = "Préstamos total";
+// $lang["common_borrowers"] = "Prestatarios";
+// $lang["common_total_borrowers"] = "Prestatarios total";
+
+$lang["common_my_wallet"] = "Pagos";
+$lang["common_total_wallet"] = "Pagos del mes";
+$lang["common_loans"] = "Contratos";
+$lang["common_total_loans"] = "Contratos total";
+$lang["common_borrowers"] = "Clientes";
+$lang["common_total_borrowers"] = "Clientes total";
 ?>
